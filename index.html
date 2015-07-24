@@ -1,0 +1,78 @@
+<html>
+<head>
+	<meta charset="pt-br">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+</head>
+<body>
+<script language=Javascript1.2>
+var currentsec=0;	
+var currentmin=0;	
+var currentmil=0;
+var keepgoin=false;
+function timer(){
+if(keepgoin){
+currentmil+=1;
+if (currentmil==10){
+currentmil=0;	
+currentsec+=1;
+}
+if (currentsec==60){
+currentsec=0;	
+currentmin+=1;
+}
+Strsec=""+currentsec;
+Strmin=""+currentmin;
+Strmil=""+currentmil;
+if (Strsec.length!=2){
+Strsec="0"+currentsec;
+}
+if (Strmin.length!=2){
+Strmin="0"+currentmin;
+}
+document.display.seconds.value=Strsec
+document.display.minutes.value=Strmin;
+document.display.milsecs.value=Strmil;
+setTimeout("timer()", 100);
+}
+}
+function startover(){
+keepgoin=false;
+currentsec=0;
+currentmin=0;
+currentmil=0;
+Strsec="00";
+Strmin="00";
+Strmil="00";
+}
+</SCRIPT>
+<div id="logo">
+	eStudying	
+</div>
+<center>
+<form name="display" onreset="startover()">
+<table id="number">
+<tbody>
+<tr>
+<td colspan="3">
+<div>
+<input value="00" name="minutes" size="5"> : <input value="00" name="seconds" size="5">
+: <input value="00" name="milsecs" size="5">
+</div>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td><input onclick="keepgoin=true;timer()" type="button" value="Iniciar" name="start"></
+<td><input onclick="keepgoin=false;" type="button" value="Pausa" name="pause"></td>
+<td><input type="reset" value="Zerar" name="reset"></td>
+</tr>
+</tbody>
+</table>
+</form>
+</center>
+<iframe src="src/arq.pdf" width="100%" height="100%" style="border: none;"></iframe>
+
+</body>
+</html>
